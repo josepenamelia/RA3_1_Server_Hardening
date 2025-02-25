@@ -27,8 +27,12 @@ Includes the following:
 
 ```
 <<<<<<< HEAD
+<<<<<<< HEAD
 # RA3_1_Server_Hardening
 # RA3_1_Server_Hardening
 # RA3_1_Server_Hardening
 =======
 >>>>>>> 4720e2e (Inicio RA3)
+=======
+# RA3_1_Server_Hardening
+>>>>>>> ffbbc06 (first commit)
