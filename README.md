@@ -26,6 +26,9 @@ Includes the following:
 └── README.md
 
 ```
+<<<<<<< HEAD
 # RA3_1_Server_Hardening
 # RA3_1_Server_Hardening
 # RA3_1_Server_Hardening
+=======
+>>>>>>> 4720e2e (Inicio RA3)
