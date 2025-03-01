@@ -22,6 +22,13 @@ Se modifico el archivo `/etc/apache2/conf-available/apache2.conf` con el siguien
 ```
 **Efecto:** Solo permite cargar contenido del mismo dominio (`self`), bloqueando scripts o estilos externos.
 
+Ademas añadiremos las lineas: 
+```
+ServerTokens ProductOnly
+ServerSignature Off
+```
+**Efecto:** Con esto conseguiremos que cuando comprobremos los headers Apache no muestre su firma y detalles de la versión en las respuestas HTTP y páginas de error.
+
 ---
 
 ### ** 2️ Archivo `Dockerfile` (Dockerización de CSP)**
@@ -80,17 +87,19 @@ Para verificar que CSP está correctamente configurado en el contenedor:
 
 ## **🔹 Capturas de Pantalla**
   
-  Captura de la modificaion del archivo de configuracion del apache:
-  ![Modificacion del apache2.conf](Capturas/Modificacion_del_apache2config.png)
+  Captura de la modificaion del archivo de configuracion del apache:  
+  ![Construccion de la imagen](./Capturas/Contruccio_de_la_imagen.png)
   
-  
+  Captura del apache2.conf:  
+  ![Captura de la modificacion de apache2.conf](./Capturas/modificacion_apache2.conf.png)
+
   Captura del Dockerfile:  
   ![Dockerfile](Capturas/Dockerfile.png)
   
   
   Comprobacion del servicio:  
-  ![Comprobacion de los cambios](Capturas/Comprobacion.png)
-  
+  ![Comprobacion de los cambios](./Capturas/Comprobacion_headers.png)
+ 
 
 ---
 
