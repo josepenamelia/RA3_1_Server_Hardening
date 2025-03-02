@@ -108,3 +108,11 @@ Comprobaciones:
 ![Path TRaversal](./Capturas/pruebasdeconcepto4.png)
 
 Nota: si es cierto que no esta funcionando correctamente y se deja pendiente de revison/cambio.
+
+## **🔹 Pull del Contenedor en Docker Hub**
+Cuando Docker Hub esté configurado, la imagen podrá descargarse con:
+```sh
+docker pull https://hub.docker.com/repository/docker/pss13030596/apache-owasp
+```
+
+---
