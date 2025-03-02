@@ -1,18 +1,18 @@
 # Instalación y Configuración de OWASP CRS con ModSecurity
 
-## **📌 Descripción**
+## ** Descripción**
 En esta sección, hemos instalado y configurado **OWASP Core Rule Set (CRS)** en Apache con **ModSecurity**. Este conjunto de reglas ayuda a proteger el servidor contra ataques como:
 
-✅ Inyección SQL (SQLi)  
-✅ Cross-Site Scripting (XSS)  
-✅ Ataques de fuerza bruta  
-✅ Command Injection  
-✅ Path Traversal  
+- Inyección SQL (SQLi)  
+- Cross-Site Scripting (XSS)  
+- Ataques de fuerza bruta  
+- Command Injection  
+- Path Traversal  
 
-## **📌 Pasos Realizados**
+## ** Pasos Realizados**
 
-### **1️⃣ Instalación de OWASP CRS en el Contenedor**
-- Se ha clonado el repositorio oficial de OWASP CRS en `/usr/share/modsecurity-crs/`.
+### ** 1 Instalación de OWASP CRS en el Contenedor**
+- Se ha clonado el repositorio oficial de OWASP CRS en `/etc/modsecurity/crs/`.
 - Se ha movido el archivo de configuración `crs-setup.conf` a `/etc/modsecurity/`.
 - Se han copiado las reglas CRS al directorio de reglas de ModSecurity.
 
@@ -34,63 +34,77 @@ Se han realizado los siguientes ajustes en **`security2.conf`** para asegurar qu
 </IfModule>
 ```
 
-✅ **Esto asegura que las reglas OWASP CRS sean la única fuente de reglas activas.**
+ **Esto asegura que las reglas OWASP CRS sean la única fuente de reglas activas.**
 
-### **3️⃣ Creación de la Imagen Docker con OWASP CRS**
+### ** 3 Creación de la Imagen Docker con OWASP CRS**
 Se ha modificado el `Dockerfile` para incluir OWASP CRS:
 ```dockerfile
+# Usa la imagen con ModSecurity como base
 FROM pps/apache-modsecurity
 
+# Instalar Git (necesario para descargar OWASP CRS)
 RUN apt update && apt install -y git
 
+# Descargar OWASP CRS
 RUN git clone https://github.com/SpiderLabs/owasp-modsecurity-crs.git /usr/share/modsecurity/owasp-crs \
     && mv /usr/share/modsecurity/owasp-crs/crs-setup.conf.example /etc/modsecurity/crs-setup.conf \
-    && mkdir -p /etc/modsecurity/rules \
-    && cp /usr/share/modsecurity/owasp-crs/rules/* /etc/modsecurity/rules/
+    && cp /usr/share/modsecurity/owasp-crs/rules/* /etc/modsecurity/crs/
 
+# Copiar archivos de configuración de OWASP CRS
 COPY security2.conf /etc/apache2/mods-enabled/security2.conf
+COPY crs-setup.conf /etc/modsecurity/crs-setup.conf
 COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
 COPY apache2.conf /etc/apache2/apache2.conf
 COPY index.html /var/www/html/index.html
 
+# Asignar permisos adecuados
 RUN chown -R www-data:www-data /var/www/html /etc/modsecurity \
     && chmod -R 775 /var/www/html /etc/modsecurity
 
+# Ejecutar Apache en primer plano
 CMD ["apache2ctl", "-D", "FOREGROUND"]
 ```
-✅ **Esto asegura que Apache cargue correctamente OWASP CRS y su configuración.**
+ **Esto asegura que Apache cargue correctamente OWASP CRS y su configuración.**
 
-### **4️⃣ Construcción y Ejecución del Contenedor**
+### ** 4 Construcción y Ejecución del Contenedor**
 Ejecutamos los siguientes comandos para construir y probar la imagen Docker:
 ```sh
 docker build -t pps/apache-owasp -f Dockerfile .
 docker run -d -p 8080:80 pps/apache-owasp
 ```
 
-### **5️⃣ Pruebas de Seguridad**
+### ** 5 Pruebas de Seguridad**
 Se realizaron las siguientes pruebas para validar que OWASP CRS bloquea ataques:
 
 🔹 **Prueba de SQL Injection:**
 ```sh
 curl -v "http://localhost:8080/index.html?testparam=test"
 ```
-✅ **Debe devolver `403 Forbidden`**
+ **Debe devolver `403 Forbidden`**
 
 🔹 **Prueba de Command Injection:**
 ```sh
 curl -v "http://localhost:8080/index.html?exec=/bin/bash"
 ```
-✅ **Debe devolver `403 Forbidden`**
+ **Debe devolver `403 Forbidden`**
 
 🔹 **Prueba de Path Traversal:**
 ```sh
 curl -v "http://localhost:8080/index.html?exec=/../../"
 ```
-✅ **Debe devolver `403 Forbidden`**
+ **Debe devolver `403 Forbidden`**
 
-### **📌 Conclusión**
-✅ Se ha instalado y configurado OWASP CRS con éxito en Apache con ModSecurity.  
-✅ Se ha creado una imagen Docker que carga OWASP CRS automáticamente.  
-✅ Se han realizado pruebas y OWASP CRS bloquea ataques de manera efectiva.  
+### ** 6 Capturas**
+Creacion de la imagen:  
+![Creacion de la imagen](./Capturas/Buildimagen.png)
 
-🚀 **¡Listo! Ahora OWASP CRS protege nuestro servidor Apache de amenazas comunes.**
+Cambios en el 000-Default:  
+![Cambios del 000-Default](./Capturas/000-defaultcambiado.png)  
+
+Comprobaciones:  
+![index Bruto](./Capturas/pruebasdeconcepto1.png)  
+![Sql Injection](./Capturas/pruebasdeconcepto2.png)  
+![Command Injection](./Capturas/pruebasdeconcepto3.png)  
+![Path TRaversal](./Capturas/pruebasdeconcepto4.png)
+
+Nota: si es cierto que no esta funcionando correctamente y se deja pendiente de revison/cambio.
