@@ -106,7 +106,7 @@ Para verificar que CSP está correctamente configurado en el contenedor:
 ## **🔹 Pull del Contenedor en Docker Hub**
 Cuando Docker Hub esté configurado, la imagen podrá descargarse con:
 ```sh
-docker pull https://hub.docker.com/repository/docker/pss13030596/pps-apache-csp
+docker pull pps13030596/pps:csp
 ```
 
 ---

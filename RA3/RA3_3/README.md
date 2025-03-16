@@ -20,7 +20,7 @@ Ejecuta el siguiente comando para construir la imagen:
 ```sh
 docker build -t pps/apache-hardened -f Dockerfile .
 ```
-✅ **Esto generará una imagen Docker con todas las configuraciones de seguridad activas.**
+ **Esto generará una imagen Docker con todas las configuraciones de seguridad activas.**
 
 ### ** 2 Ejecución del Contenedor**
 Inicia el contenedor con el puerto HTTPS correcto:
