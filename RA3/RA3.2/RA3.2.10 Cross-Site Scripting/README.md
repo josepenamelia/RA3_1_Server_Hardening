@@ -173,6 +173,10 @@ Payload utilizado:
 ```
 <script>alert('XSS Stored Low');</script>
 ```
+Aplicacion:
+
+![aplicacionenlow](./Imagenes/lowstored.png)
+
 
 ### Procedimiento:
 
@@ -184,6 +188,10 @@ Resultado esperado:
 
 Cada vez que alguien acceda a la página donde se muestran los mensajes, se activará una ventana emergente (alert) ejecutando el script.
 
+Comprobacion:
+
+![lowcomprobacion](./Imagenes/storedresultadolow.png)
+
 ## Nivel de Seguridad: Medium
 
 ### Observación
@@ -194,16 +202,21 @@ En el nivel Medium, aunque hay ciertos filtros, es posible evadirlos utilizando 
 
 Payload utilizado:
 ```
-<img src=x onerror="alert('XSS Stored Medium')">
+<img src=x onerror=alert(document.cookie)>
 ```
+
+![Aplicaciondelmediumstored](./Imagenes/Medium/Storedaplicacionmedium.png)
+
 ### Procedimiento:
 
-Introducir el payload en el campo de mensaje.
+Introducir el payload en el campo de nombre.
 
-Enviar el formulario.
+Modificaremos con las herramientas de desarrolador, tanto el tamaño como la cantidad de caracteres del campo.
+
+Enviamos el formulario.
 
 Resultado esperado:
 
-El navegador interpretará la imagen y, al fallar la carga, ejecutará el código en onerror, mostrando un alert.
+El navegador interpretará la imagen y, al fallar la carga, ejecutará el código en onerror, mostrando un alert con la cookie.
 
-
+![Resultadomedium](./Imagenes/Medium/StoredResultadodelmedium.png)
