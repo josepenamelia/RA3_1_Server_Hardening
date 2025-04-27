@@ -1,3 +1,5 @@
+# Explotación de XSS Basado en DOM en DVWA
+
 # Nivel de Seguridad: Low
 
 ## Observación
@@ -5,6 +7,8 @@
 Existe una opción para seleccionar el idioma.
 
 El valor seleccionado es reflejado directamente en el parámetro GET default=English.
+
+![PrimeraPagina](./Imagenes/DOMPrimeraImpresionlow.png)
 
 ## Explotación
 
@@ -26,6 +30,11 @@ Ejemplo URL:
 ```
 http://127.0.0.1:8081/vulnerabilities/xss_d/?default=<script>alert(document.cookie);</script>
 ```
+
+Resultado:
+
+![Comprobacion](./Imagenes/DOMEjecucionyresultadolow.png)
+
 # Nivel de Seguridad: Medium
 
 ## Observación
@@ -36,11 +45,13 @@ Además, el uso de etiquetas <script> está restringido.
 
 ## Explotación
 
-Para escapar de la etiqueta <option>, se debe cerrar manualmente las etiquetas HTML y aprovechar otra etiqueta que ejecute código, como <img>.
+Para escapar de la etiqueta <option>, se debe cerrar manualmente las etiquetas HTML y aprovechar otra etiqueta que ejecute código, como "<img>".
 
 Payload utilizado:
 
+```
 " ></option></select><img src=x onerror="alert(document.cookie)">
+```
 
 ## Procedimiento:
 
@@ -53,7 +64,9 @@ Resultado esperado:
 Se produce un alert con el contenido de las cookies, validando la explotación exitosa del XSS basado en DOM.
 
 Ejemplo URL:
+
 ```
 http://127.0.0.1:8081/vulnerabilities/xss_d/?default="%20></option></select><img%20src=x%20onerror="alert(document.cookie)">
 ```
+
 (Asegurarse de codificar correctamente la URL si se inserta manualmente.)
