@@ -78,3 +78,75 @@ Resultado:
 ![Resultado seguridad medium](./Imagenes/Medium/DOMresultadomedium.png)
 
 (Asegurarse de codificar correctamente la URL si se inserta manualmente.)
+
+# Reflected Cross Site Scripting
+
+## Introduccion
+En esta actividad se analiza la vulnerabilidad Reflected Cross Site Scripting (XSS) en DVWA, realizando pruebas en los niveles de seguridad Low y Medium.
+
+La vulnerabilidad ocurre cuando un parámetro enviado en la URL o mediante un formulario se refleja en la página sin el debido control, permitiendo la ejecución de código malicioso.
+
+## Nivel de Seguridad: Low
+
+### Observación
+
+Existe un campo de entrada llamado name.
+
+El valor introducido se refleja directamente en la página web sin ser validado ni sanitizado.
+
+### Explotación
+
+Payload utilizado:
+```
+<img src=x onerror="alert(document.cookie)">
+```
+Aplicacion:
+
+![low](./Imagenes/reflectedlow.png)
+
+### Procedimiento:
+
+Introducir el payload en el campo name.
+
+Enviar el formulario.
+
+Resultado esperado:
+
+Se genera un alert mostrando las cookies actuales del navegador.
+
+Ejemplo de uso:
+
+Insertar el payload en el campo de nombre en la sección vulnerable y enviar.
+
+Resultado:
+
+![Resultado low](./Imagenes/Resultadolow.png)
+
+
+## Nivel de Seguridad: Medium
+
+### Observación
+
+A pesar de estar en nivel Medium, el mismo payload utilizado en el nivel Low sigue siendo efectivo.
+
+### Explotación
+
+Payload utilizado:
+```
+<img src=x onerror="alert(document.cookie)">
+```
+Aplicacion:
+
+![medium](./Imagenes/Medium/reflectedmedium.png)
+
+### Procedimiento:
+
+Ingresar el mismo payload en el campo name.
+
+Enviar la solicitud.
+
+Resultado esperado:
+
+De nuevo, se activa una ventana emergente (alert) con el contenido de las cookies.
+
+![Resultado Medium](./Imagenes/Medium/Resultadomedium.png)
