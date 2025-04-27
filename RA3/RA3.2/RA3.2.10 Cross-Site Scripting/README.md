@@ -43,6 +43,10 @@ En este nivel, el valor del parámetro se inserta dentro de una etiqueta <option
 
 Además, el uso de etiquetas <script> está restringido.
 
+Si ejecutamos el anterior apartado ahora con la seguridad al medio, veremos que no toma efecto alguno:
+
+![aplicaiciondellowenmedio](./Imagenes/Medium/ejecuciondellowenmeium.png)
+
 ## Explotación
 
 Para escapar de la etiqueta <option>, se debe cerrar manualmente las etiquetas HTML y aprovechar otra etiqueta que ejecute código, como "<img>".
@@ -68,5 +72,9 @@ Ejemplo URL:
 ```
 http://127.0.0.1:8081/vulnerabilities/xss_d/?default="%20></option></select><img%20src=x%20onerror="alert(document.cookie)">
 ```
+
+Resultado:
+
+![Resultado seguridad medium](./Imagenes/Medium/DOMresultadomedium.png)
 
 (Asegurarse de codificar correctamente la URL si se inserta manualmente.)
