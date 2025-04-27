@@ -2,7 +2,7 @@
 
 ## SQL Injection en **Low** Security
 
-### Pasos:
+### Pasos en low:
 
 1. Ve al menú izquierdo y selecciona **SQL Injection**.
 2. En el campo **User ID**, ingresa el siguiente payload:
