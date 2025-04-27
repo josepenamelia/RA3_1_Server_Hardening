@@ -150,3 +150,60 @@ Resultado esperado:
 De nuevo, se activa una ventana emergente (alert) con el contenido de las cookies.
 
 ![Resultado Medium](./Imagenes/Medium/Resultadomedium.png)
+
+#  Explotación de XSS Almacenado en DVWA
+
+## Contexto
+
+En esta actividad se analiza la vulnerabilidad Stored Cross Site Scripting (XSS) en DVWA, abordando los niveles de seguridad Low y Medium.
+
+La vulnerabilidad ocurre cuando un valor ingresado por el usuario se guarda en la base de datos o en el servidor, y posteriormente se muestra a otros usuarios sin una adecuada validación o sanitización.
+
+## Nivel de Seguridad: Low
+
+### Observación
+
+Existe un formulario donde los usuarios pueden dejar mensajes.
+
+El contenido del mensaje se almacena y se refleja en la página sin ser validado.
+
+### Explotación
+
+Payload utilizado:
+```
+<script>alert('XSS Stored Low');</script>
+```
+
+### Procedimiento:
+
+Introducir el payload en el campo de mensaje.
+
+Enviar el formulario.
+
+Resultado esperado:
+
+Cada vez que alguien acceda a la página donde se muestran los mensajes, se activará una ventana emergente (alert) ejecutando el script.
+
+## Nivel de Seguridad: Medium
+
+### Observación
+
+En el nivel Medium, aunque hay ciertos filtros, es posible evadirlos utilizando etiquetas alternativas.
+
+### Explotación
+
+Payload utilizado:
+```
+<img src=x onerror="alert('XSS Stored Medium')">
+```
+### Procedimiento:
+
+Introducir el payload en el campo de mensaje.
+
+Enviar el formulario.
+
+Resultado esperado:
+
+El navegador interpretará la imagen y, al fallar la carga, ejecutará el código en onerror, mostrando un alert.
+
+
