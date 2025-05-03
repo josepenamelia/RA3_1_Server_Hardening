@@ -1,0 +1,14 @@
+# Patch to work embeed browser in Burpsuite.
+
+Cuando nos nos abra Burpsuite debemos darle permisos al explorador.
+Tened en cuenta la version de burpsuite que estais usando y la version del navegador.
+
+---
+
+```
+bash
+sudo chown root:root /home/jose/BurpSuitePro/burpbrowser/135.0.7049.95/chrome-sandbox
+sudo chmod 4755 /home/jose/BurpSuitePro/burpbrowser/135.0.7049.95/chrome-sandbox
+```
+
+---
