@@ -13,6 +13,7 @@ PRACTITIONER
 
 Captura de los Laboratorios:  
 ![CSRF](./Imagenes/Cross-site%20request%20forgery.png)
+![](./Imagenes/Cross-site%20request%20forgery2.png)
 ---
 
 ## Parte 2 - Cross-Origin Resource Sharing (CORS)
