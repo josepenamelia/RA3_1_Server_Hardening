@@ -12,7 +12,7 @@ PRACTITIONER
 - CSRF where token validation depends on token being present  
 
 Captura de los Laboratorios:  
-![CSRF](./Imagenes/BurpSuite-CSRF.png)
+![CSRF](./Imagenes/Cross-site%20request%20forgery.png)
 ---
 
 ## Parte 2 - Cross-Origin Resource Sharing (CORS)
@@ -25,7 +25,7 @@ PRACTITIONER
 - CORS vulnerability with trusted insecure protocols  
 
 Captura de los Laboratorios:  
-![CORS](./Imagenes/BurpSuite-CORS.png)
+![CORS](./Imagenes/CORS.png)
 ---
 
 ## Parte 3 - DOM-Based Vulnerabilities
@@ -38,7 +38,7 @@ PRACTITIONER
 - DOM-based cookie manipulation  
 
 Captura de los Laboratorios:  
-![DOM](./Imagenes/BurpSuite-DOM.png)
+![DOM](./Imagenes/DOM.png)
 ---
 
 ## Parte 4 - Cross-Site Scripting (XSS)
@@ -69,5 +69,8 @@ PRACTITIONER
 - Reflected XSS into a template literal with all dangerous characters encoded  
 
 Captura de los Laboratorios:  
-![XSS](./Imagenes/BurpSuite-XSS.png)
+![XSS](./Imagenes/Cross-site%20scripting1.png)
+![](./Imagenes/Cross-site%20scripting2.png)
+![](./Imagenes/Cross-site%20scripting3.png)
+![](./Imagenes/Cross-site%20scripting4.png)
 ---
